@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From My Heart to Yours</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff0f3; 
+            background-image: radial-gradient(#ffe5ec 20%, transparent 20%), radial-gradient(#ffe5ec 20%, transparent 20%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Ambient Floating Hearts Background */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            user-select: none;
+            opacity: 0.6;
+            animation: floatUp 6s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(-110vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Glassmorphic Screens */
+        .screen {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 179, 193, 0.4);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            z-index: 10;
+            transition: all 0.5s ease-in-out;
+            position: absolute;
+        }
+
+        #mainPage, #successSection {
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 60px;
+            align-items: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+
+        .primary-btn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .primary-btn:hover {
+            transform: scale(1.05);
+            background-color: #ff758f;
+        }
+
+        .runaway-btn {
+            background-color: #f0f0f0;
+            color: #a0a0a0;
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        /* Bear Styling - No Box/No Border/Transparent */
+        .bear-container {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bear-gif {
+            width: 160px;
+            height: auto;
+            background: transparent;
+            mix-blend-mode: multiply; /* Helps blend out minor white backgrounds seamlessly */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music File Reference -->
+    <audio id="bgMusic" loop>
+        <source src="sorry-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- PHASE 1: THE INTRO GATE -->
+    <div class="screen" id="introPage" style="display: block; opacity: 1; transform: scale(1);">
+        <h1>Hey... ✨</h1>
+        <p>Can u spend a little time with me?</p>
+        <div class="btn-container" id="introBtnContainer">
+            <button class="primary-btn" onclick="unlockMainPage()">Yes</button>
+            <button class="runaway-btn" id="introNoBtn" onmouseover="moveButton('introNoBtn', 'introPage')">No</button>
+        </div>
+    </div>
+
+    <!-- PHASE 2: THE APOLOGY -->
+    <div class="screen" id="mainPage">
+        <h1>From the Bottom of My Heart... 💔</h1>
+        <p>
+            Bemni I know I messed up ena did some stupid stuff ena betam ykrta kelbe kelbe 😭. 
+            I can’t promise u it won’t happen again, but I can promise u to try my best not to 
+            make u feel the way u felt today ena pls don’t hate me (actually don’t love me for our 
+            case 😌) ena pls forgive me plssssssss💔
+        </p>
+        
+        <button class="primary-btn" onclick="forgiveAndHug()">Forgive Me & Hug Me?</button>
+
+        <!-- Heartbroken Bear Waiting Out in the Open -->
+        <div class="bear-container">
+            <img id="teddyBear" class="bear-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5M2Zidnd3YmpxNms1ejhpNXptNzE2Mzg5N3ZndWpxNDV0cHByNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/efEG3z7SRAp8T6989G/giphy.gif" alt="Sad Teddy Bear">
+        </div>
+    </div>
+
+    <!-- PHASE 3: THE HEALING MOMENT -->
+    <div class="screen" id="successSection">
+        <h1>Thank You! ❤️</h1>
+        <p>I promise to make it all up to you. Let's talk?</p>
+        
+        <!-- Happy Celebrating Bear -->
+        <div class="bear-container">
+            <img class="bear-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDh2cmNxb2twdjA0dXB4amFmdXgxbDk5eWdzYTZ0MXNmb2ptNmxsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9Fnf89w0bC78P1P/giphy.gif" alt="Happy Teddy Bear">
+        </div>
+    </div>
+
+    <script>
+        let heartColor = '🌸'; // Soft pink hearts initially
+
+        // 1. Dynamic Heart Generator
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = heartColor === '🌸' ? '❤️' : '💖'; // Changes to vibrant red/pink combo later
+            
+            if (heartColor === '❤️') {
+                heart.style.color = '#ff0033'; // Bright red burst override
+            }
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s"; // Spawns slightly faster if happy
+            heart.style.fontSize = Math.random() * 15 + 15 + "px";
+            
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 400);
+
+        // 2. Runaway Button Handler
+        function moveButton(btnId, containerId) {
+            const btn = document.getElementById(btnId);
+            const container = document.getElementById(containerId);
+            
+            const padding = 30;
+            const maxX = container.clientWidth - btn.clientWidth - (padding * 2);
+            const maxY = container.clientHeight - btn.clientHeight - (padding * 2);
+            
+            const randomX = Math.floor(Math.random() * maxX) - (maxX / 2);
+            const randomY = Math.floor(Math.random() * maxY) - (maxY / 2);
+            
+            btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // 3. Transition to Main Page & Start Audio
+        function unlockMainPage() {
+            // Play Music
+            const music = document.getElementById('bgMusic');
+            music.play().catch(e => console.log("Audio waiting for interact: ", e));
+
+            // Fade Intro Out
+            const intro = document.getElementById('introPage');
+            intro.style.opacity = '0';
+            intro.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                intro.style.display = 'none';
+                
+                // Fade Main Page In
+                const main = document.getElementById('mainPage');
+                main.style.display = 'block';
+                setTimeout(() => {
+                    main.style.opacity = '1';
+                    main.style.transform = 'scale(1)';
+                }, 500);
+            }, 500);
+        }
+
+        // 4. Final Hug Explosion Screen
+        function forgiveAndHug() {
+            // Change background heart cycle to vibrant red
+            heartColor = '❤️';
+            
+            // Trigger rapid heart burst explosion
+            for(let i = 0; i < 30; i++) {
+                setTimeout(createHeart, Math.random() * 1000);
+            }
+
+            // Fade Main Page Out
+            const main = document.getElementById('mainPage');
+            main.style.opacity = '0';
+            main.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                main.style.display = 'none';
+                
+                // Fade Success Screen In
+                const success = document.getElementById('successSection');
+                success.style.display = 'block';
+                setTimeout(() => {
+                    success.style.opacity = '1';
+                    success.style.transform = 'scale(1)';
+                }, 500);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
